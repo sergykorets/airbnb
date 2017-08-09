@@ -1,0 +1,48 @@
+<% provide(:page_title, 'Appartments') %>
+<% provide(:appartments, 'active') %>
+
+<div class="row">
+  <div style="margin-bottom: 2%;">
+    <%= link_to 'Add appartment', new_appartment_path, class: 'btn btn-info btn-lg' %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Rent</th>
+        <th>Earning</th>
+        <th>Profit</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @appartments.each do |appartment| %>
+        <tr>
+          <td><%= appartment.address %></td>
+          <td><%= number_to_currency(appartment.rent) %></td>
+          <td><%= number_to_currency(appartment.earning) %></td>
+          <td><%= number_to_currency(appartment.profit) %></td>
+          <td><%= link_to 'Update earning', update_earning_appartment_path(appartment), class: 'btn btn-sm btn-primary' %></td>
+          <td>
+            <%= link_to edit_appartment_path(appartment), class: 'btn btn-sm btn-warning' do %>
+              <%= fa_icon('pencil-square-o', class: 'fa') %>
+            <% end %>    
+          </td>
+          <td>
+            <%= link_to appartment, method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Are you sure?' } do %>
+              <%= fa_icon('trash-o', class: 'fa') %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="apple_pagination">
+  <%= will_paginate @appartments, container: false %>
+</div>
+
+

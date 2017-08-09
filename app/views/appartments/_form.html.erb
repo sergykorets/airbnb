@@ -1,0 +1,27 @@
+<%= form_with(model: appartment, local: true) do |form| %>
+  <% if appartment.errors.any? %>
+    <div class="alert alert-info" id="error_explanation">
+      <h2><%= pluralize(appartment.errors.count, "error") %> prohibited this appartment from being saved:</h2>
+
+      <ul>
+      <% appartment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_field :address, autocomplete: :off, id: :geocomplete, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rent_price %>
+    <%= form.number_field :rent, id: :appartment_rent, placeholder: 'Type monthly rent price', class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Save", class: "btn btn-default" %>
+  </div>
+<% end %>

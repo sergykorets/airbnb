@@ -1,0 +1,43 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href='/'>Air<span class='light'>BnB</span></a>
+
+    <div class="collapse navbar-collapse pull-right" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto pull-left">
+        <li class="nav-item">
+          <%#= link_to 'All categories', blog_tags_path, class: "nav-link #{yield(:categories)}" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav pull-right">
+        <% if author_signed_in? %>
+          <li class="nav-item" id="round-image-30">
+            <%= image_tag current_author.avatar.url(:thumb) %>
+          </li>
+          <li class="nav-item">
+            <% if !current_author.name.blank? %>
+              <%= link_to current_author.name, edit_author_registration_path, class: "nav-link #{yield(:edit)}" %>
+            <% else %>
+              <%= link_to 'My profile', edit_author_registration_path, class: "nav-link #{yield(:edit)}" %>
+            <% end %> 
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My appartments', appartments_path, class: "nav-link #{yield(:appartments)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log out', destroy_author_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_author_registration_path, class: "nav-link #{yield(:register)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign in', new_author_session_path, class: "nav-link #{yield(:signin)}" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
