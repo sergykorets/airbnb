@@ -3,29 +3,19 @@ class AirbnbWorker
   require 'capybara/poltergeist'
 
   def perform(appartment_id)
-    # session = Capybara::Session.new(:poltergeist)
-    # session.visit('https://www.airbnb.com/host/homes')
-    # puts session.visit('https://www.airbnb.com/host/homes')
-    # l = session.find('select[data-reactid="75"]').click
-    # l.find(:xpath, 'option[2]').select_option
-    # s = session.find('input[data-reactid="74"]').set(address)
-    # s.send_keys :enter
-    # earning = session.find('.earning-estimation__amount strong').text
-    # city = session.find('.space-4 .text-babu span').text
-    # puts earning
-    # puts city
     appartment = Appartment.find_by_id(appartment_id)
     session = Capybara::Session.new(:poltergeist)
     session.visit('https://www.airbnb.com/host/homes')
+    sleep rand(0.1..0.3)
     s = session.find('.earning-estimation__location-input input').set(appartment.address)
+    sleep rand(0.1..0.3)
     s.send_keys :enter
+    sleep rand(0.1..0.3)
     l = session.find('.earning-estimation__accommodation select').click
+    sleep rand(0.1..0.3)
     l.find(:xpath, 'option[2]').select_option
 
-    # earning = session.find('.earning-estimation__amount strong').text
-    # city = session.find('.space-4 .text-babu span').text
-    sleep 1
-    puts '*-/*/-/*-/*/*-/*-/*/*-/-*/*-/*/*/*/-*/*-/-*/*-/*/*-/-*/*-/*-'
+    sleep rand(0.5..1.0)
     puts session.find('.space-4 .text-babu span').text
     puts session.find('.earning-estimation__amount strong').text
 

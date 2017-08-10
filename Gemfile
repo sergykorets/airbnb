@@ -42,7 +42,7 @@ gem "font-awesome-rails"
 gem 'geocoder'
 gem 'geocomplete_rails'
 gem 'poltergeist'
-gem 'capybara', '~> 2.13'
+gem 'capybara'
 gem 'selenium-webdriver'
 gem 'launchy'
 gem 'sidekiq'
@@ -51,6 +51,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
+  gem 'poltergeist'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'faker'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :development do
