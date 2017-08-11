@@ -8,7 +8,7 @@ class AppartmentsController < ApplicationController
 
   def update_earning
     AirbnbWorker.perform_async(@appartment.id)
-    redirect_to root_path, notice: 'Wait few seconds for getting earning from AirBnB'
+    redirect_to root_path, notice: 'Wait at least 10 seconds for getting earning from AirBnB and refresh a page'
   end
 
   def new
@@ -24,7 +24,7 @@ class AppartmentsController < ApplicationController
     respond_to do |format|
       if @appartment.save
         AirbnbWorker.perform_async(@appartment.id)
-        format.html { redirect_to appartments_url, notice: 'Appartment created, wait few seconds for getting earning from AirBnB' }
+        format.html { redirect_to appartments_url, notice: 'Appartment created, wait at least 10 seconds for getting earning from AirBnB' }
         format.json { render :show, status: :created, location: @appartment }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class AppartmentsController < ApplicationController
     respond_to do |format|
       if @appartment.update(appartment_params)
         AirbnbWorker.perform_async(@appartment.id)
-        format.html { redirect_to appartments_url, notice: 'Appartment updated, wait few seconds for getting earning from AirBnB' }
+        format.html { redirect_to appartments_url, notice: 'Appartment updated, wait at least 10 seconds for getting earning from AirBnB' }
         format.json { render :show, status: :ok, location: @appartment }
       else
         format.html { render :edit }

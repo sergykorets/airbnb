@@ -4,12 +4,17 @@
   <td><%= number_to_currency(appartment.earning) %></td>
   <td><%= number_to_currency(appartment.profit) %></td>
   <td>
-    <%= link_to 'Update AirBnB earning', update_earning_appartment_path(appartment), remote: true, class: 'btn btn-sm btn-primary' %>
     <%= link_to edit_appartment_path(appartment), class: 'btn btn-sm btn-warning' do %>
       <%= fa_icon('pencil-square-o', class: 'fa') %> Edit
     <% end %>    
     <%= link_to appartment, method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Are you sure?' } do %>
       <%= fa_icon('trash-o', class: 'fa') %> Delete
     <% end %>
+  </td>
+  <td>
+    <%= appartment.updated_at.strftime('%d-%m-%Y, %I:%M:%S') %>
+    <%= link_to update_earning_appartment_path(appartment), class: 'btn btn-sm btn-secondary' do %>
+      <%= fa_icon('refresh', class: 'fa') %>
+    <% end %>  
   </td>
 </tr>

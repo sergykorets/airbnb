@@ -14,12 +14,11 @@ class AirbnbWorker
     l = session.find('.earning-estimation__accommodation select').click
     sleep rand(0.1..0.3)
     l.find(:xpath, 'option[2]').select_option
-
     sleep rand(0.5..1.0)
-    puts session.find('.space-4 .text-babu span').text
-    puts session.find('.earning-estimation__amount strong').text
-
+    city = session.find('.space-4 .text-babu span').text
     earning = session.find('.earning-estimation__amount strong').text
+    puts city
+    puts earning
     converted_earning = '%.2f' % earning.split(',').join[1..-1]
     monthly_earning = converted_earning.to_f * 4
     profit = monthly_earning - appartment.rent

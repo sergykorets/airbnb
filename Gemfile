@@ -41,8 +41,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem "font-awesome-rails"
 gem 'geocoder'
 gem 'geocomplete_rails'
-gem 'poltergeist'
-gem 'capybara'
 gem 'selenium-webdriver'
 gem 'launchy'
 gem 'sidekiq'
